@@ -184,7 +184,11 @@ internal class CropOverlay: UIView {
 					newFrame = CGRect.zero
 				}
 
-                let minimumFrame = CGRect(x: newFrame.origin.x, y: newFrame.origin.y, width: max(newFrame.size.width, minimumSize.width + 2 * outterGap), height: max(newFrame.size.height, minimumSize.height + 2 * outterGap))
+                var minimumFrame = CGRect(x: newFrame.origin.x, y: newFrame.origin.y, width: max(newFrame.size.width, minimumSize.width + 2 * outterGap), height: max(newFrame.size.height, minimumSize.height + 2 * outterGap))
+                
+                minimumFrame.size.width = min(minimumFrame.size.width, minimumFrame.size.height)
+                minimumFrame.size.height = minimumFrame.size.width
+				
 				frame = minimumFrame
 				layoutSubviews()
 
